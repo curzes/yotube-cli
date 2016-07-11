@@ -18,12 +18,17 @@ public class Parser {
 	
 	public Parser(){
 		AddingChanels();
+		for(Chanel c : chanels){
+			System.out.println(c.GetName());
+			for(Video v : c.GetVideos()){
+				System.out.println(v.GetTitle() + "\n" + v.GetPublished());
+			}
+		}
 	}
 	/* Parsing xml from sublist. Get chanel name videos */
 	public void AddingChanels(){
 		for( String name : subscribers.GetSubList() ){
 			try{
-				
 				Document doc = Jsoup.connect("https://www.youtube.com/feeds/videos.xml?user=" + name).get();
 				String chanelName = doc.select("title").first().text();
 				String chanelUrl = doc.select("uri").first().text();

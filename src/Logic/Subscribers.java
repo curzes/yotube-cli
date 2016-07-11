@@ -9,6 +9,7 @@ public class Subscribers {
 	public Subscribers(){
 		/* Lägg till namn från lista eller databas */
 		subList.add("STAMSITE");
+		subList.add("vsauce");
 	}
 	public void AddChanel(String name){
 		
@@ -21,5 +22,8 @@ public class Subscribers {
 	public ArrayList<String> GetSubList(){
 		return subList;
 	}
-	
+	public boolean ChanelExists(String chanel){
+		
+		return false;
+	}
 }
