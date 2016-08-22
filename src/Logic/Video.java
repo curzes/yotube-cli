@@ -1,8 +1,18 @@
 package Logic;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import com.sun.org.apache.xml.internal.resolver.helpers.PublicId;
+
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class Video {
 	
+	private String videoId;
+	private String chanelName;
+	private String chanelLink;
 	private String title;
 	private String link;
 	private Date published;
@@ -13,7 +23,11 @@ public class Video {
 	private double rate;
 	private int views;
 	
-	public Video(String title, String link, Date published, Date updated, String thumbnail, String description, int likes, double rate, int views){
+	
+	public Video(String videoId, String chanelName, String chanelLink, String title, String link, Date published, Date updated, String thumbnail, String description, int likes, double rate, int views){
+		this.videoId = videoId;
+		this.chanelName = chanelName;
+		this.chanelLink = chanelLink;
 		this.title = title;
 		this.link = link;
 		this.published = published;
@@ -24,31 +38,45 @@ public class Video {
 		this.rate = rate;
 		this.views = views;
 	}
-	public String GetTitle(){
+	public String getChanelName(){
+		return chanelName;
+	}
+	public String getChanelLink(){
+		return chanelLink;
+	}
+	public String getVideoId(){
+		return videoId;
+	}
+	public String getTitle(){
 		return title;
 	}
-	public String GetLink(){
+	public String getLink(){
 		return link;
 	}
-	public Date GetPublished(){
-		return published;
+	public String getPublished(){
+		return new SimpleDateFormat("EEEE d MMM Y HH:mm:ss").format(published);
 	}
-	public Date GetUpdated(){
-		return updated;
+	public String getUpdated(){
+		return new SimpleDateFormat("EEEE d MMM Y HH:mm:ss").format(updated);
 	}
-	public String GetThumbnail(){
-		return thumbnail;
+	public ImageView getThumbnail(){
+		ImageView imv = new ImageView();
+		imv.setFitHeight(66);
+		imv.setFitWidth(117);
+		imv.setImage(new Image(thumbnail));
+		
+		return imv;
 	}
-	public String GetDescription(){
+	public String getDescription(){
 		return description;
 	}
-	public int GetLikes(){
+	public int getLikes(){
 		return likes;
 	}
-	public double GetRate(){
+	public double getRate(){
 		return rate;
 	}
-	public int GetViews(){
+	public int getViews(){
 		return views;
 	}
 }
