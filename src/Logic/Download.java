@@ -33,4 +33,7 @@ public class Download {
         fileChooser.setInitialDirectory( defaultDownloadPath );
         return fileChooser;
 	}
+	public static void downloadJson(Video video){
+		System.out.println( "Download JSON info for: " + video.getLink() );
+	}
 }

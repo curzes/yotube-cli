@@ -14,6 +14,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Locale;
 
@@ -27,7 +28,8 @@ public class Parser {
 		addingChanels();
 	}
 	public ArrayList<Video> getVideos(){
-		return videos;
+		Collections.sort(videos, Collections.reverseOrder());
+		return videos; 
 	}
 	/* Parsing xml from sublist. Get chanel name videos */
 	private void addingChanels(){

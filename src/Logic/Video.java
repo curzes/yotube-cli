@@ -8,7 +8,7 @@ import com.sun.org.apache.xml.internal.resolver.helpers.PublicId;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class Video {
+public class Video implements Comparable<Video>{
 	
 	private String videoId;
 	private String chanelName;
@@ -32,7 +32,7 @@ public class Video {
 		this.link = link;
 		this.published = published;
 		this.updated = updated;
-		this.thumbnail = thumbnail;
+		this.thumbnail = thumbnail.replace("hqdefault", "mqdefault");
 		this.description = description;
 		this.likes = likes;
 		this.rate = rate;
@@ -59,13 +59,19 @@ public class Video {
 	public String getUpdated(){
 		return new SimpleDateFormat("EEEE d MMM Y HH:mm:ss").format(updated);
 	}
+	public Date getCompareDate(){
+		return published;
+	}
 	public ImageView getThumbnail(){
-		ImageView imv = new ImageView();
-		imv.setFitHeight(66);
-		imv.setFitWidth(117);
-		imv.setImage(new Image(thumbnail));
-		
-		return imv;
+		ImageView img = new ImageView();
+		img.setFitHeight(66);
+		img.setFitWidth(117);
+		img.setImage(new Image(thumbnail));
+		return img;
+	}
+	public Image getThumbnailImage(){
+		Image img = new Image(thumbnail);
+		return img;
 	}
 	public String getDescription(){
 		return description;
@@ -78,5 +84,9 @@ public class Video {
 	}
 	public int getViews(){
 		return views;
+	}
+	@Override
+	public int compareTo(Video o) {
+		return published.compareTo(o.getCompareDate());
 	}
 }

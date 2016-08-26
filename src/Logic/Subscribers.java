@@ -15,6 +15,8 @@ public class Subscribers {
 	public Subscribers(){
 		/* Lägg till namn från lista eller databas */
 		subList.add("STAMSITE");
+		subList.add("figgwhipp");
+		Stats.setNrOfSubscriptions( subList.size() );
 	}
 	public void addChanel(String name){
 		

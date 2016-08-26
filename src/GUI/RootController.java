@@ -1,7 +1,9 @@
 package GUI;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.*;
+import javax.imageio.ImageIO;
 
 import com.sun.corba.se.impl.util.PackagePrefixChecker;
 
@@ -39,6 +41,8 @@ public class RootController{
 
 	public void initialize(){
 		populateTable();
+		subscriptionTable.getSelectionModel().select(0);
+		tableSelect();
 		System.out.println("Antal videor: " + videos.size());
 	}
 	
@@ -50,7 +54,8 @@ public class RootController{
 	public void tableSelect(){
 		Video v = subscriptionTable.getSelectionModel().getSelectedItem();
 	    if(v != null){
-	    	sidebarTitle.setText(v.getTitle());
+	    	sidebarThumbnail.setImage( v.getThumbnailImage() );
+	    	sidebarTitle.setText( v.getTitle() );
 	    	sidebarChanel.setText( v.getChanelName() );
 	    	sidebarDate.setText( v.getPublished() );
 	    	sidebarUpdated.setText( v.getUpdated() );
@@ -61,33 +66,37 @@ public class RootController{
 	    	sidebarDescription.setText( v.getDescription() );
 	    }
 	}
-	public void datePress(){
-		System.out.println("Hello");
-	}
 	// Open video in browser
 	public void openInBrowser(){
-		Video v = subscriptionTable.getSelectionModel().getSelectedItem();
-		new Brows().openInBrowser( v.getLink() );
+		Video selectedVideo = subscriptionTable.getSelectionModel().getSelectedItem();
+		new Brows().openInBrowser( selectedVideo.getLink() );
 	}
 	// Ladda ner Mp3
 	public void downloadMp3(){
-		Video v = subscriptionTable.getSelectionModel().getSelectedItem();
-	    if(v != null){
-	    	Download.downloadMp3( v );
+		Video selectedVideo = subscriptionTable.getSelectionModel().getSelectedItem();
+	    if(selectedVideo != null){
+	    	Download.downloadMp3( selectedVideo );
 	    }
 	}
 	// Ladda ner Mp4
 	public void downloadMp4(){
-		Video v = subscriptionTable.getSelectionModel().getSelectedItem();
-	    if(v != null){
-	    	Download.downloadMp4( v );
+		Video selectedVideo = subscriptionTable.getSelectionModel().getSelectedItem();
+	    if(selectedVideo != null){
+	    	Download.downloadMp4( selectedVideo );
+	    }
+	}
+	// Ladda ner en videos json info
+	public void downloadJson(){
+		Video selectedVideo = subscriptionTable.getSelectionModel().getSelectedItem();
+	    if(selectedVideo != null){
+	    	Download.downloadJson(selectedVideo);
 	    }
 	}
 	// Spela vido
 	public void playVideo(){
-		Video v = subscriptionTable.getSelectionModel().getSelectedItem();
-	    if(v != null){
-	    	new Play().playVideo( v.getLink() );
+		Video selectedVideo = subscriptionTable.getSelectionModel().getSelectedItem();
+	    if(selectedVideo != null){
+	    	new Play().playVideo( selectedVideo.getLink() );
 	    }
 	}
 
