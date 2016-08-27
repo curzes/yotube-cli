@@ -75,21 +75,21 @@ public class RootController{
 	public void downloadMp3(){
 		Video selectedVideo = subscriptionTable.getSelectionModel().getSelectedItem();
 	    if(selectedVideo != null){
-	    	Download.downloadMp3( selectedVideo );
+	    	new Download().downloadMp3( selectedVideo );
 	    }
 	}
 	// Ladda ner Mp4
 	public void downloadMp4(){
 		Video selectedVideo = subscriptionTable.getSelectionModel().getSelectedItem();
 	    if(selectedVideo != null){
-	    	Download.downloadMp4( selectedVideo );
+	    	new Download().downloadMp4( selectedVideo );
 	    }
 	}
 	// Ladda ner en videos json info
 	public void downloadJson(){
 		Video selectedVideo = subscriptionTable.getSelectionModel().getSelectedItem();
 	    if(selectedVideo != null){
-	    	Download.downloadJson(selectedVideo);
+	    	new Download().downloadJson(selectedVideo);
 	    }
 	}
 	// Spela vido
